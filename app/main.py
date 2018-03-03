@@ -14,6 +14,43 @@ def static():
 def static(path):
     return bottle.static_file(path, root='static/')
 
+def init(data):
+    grid = [[0 for col in xrange(data['height'])] for row in xrange(data['width'])]
+    ourID = data['you']
+    #food = []
+    for snek in data['snakes']:
+        if snek['id'] == ourID:
+            kurt = snek
+        for coord in snek['coords']:
+            grid[coord[0]][coord[1]] = SNAKE
+
+    for f in data['food']:
+        grid[f[0]][f[1]] = FOOD
+        #food.append((f[0],f[1]))
+
+
+    return kurt, grid
+
+def distance(p, q):
+    dx = abs(p[0] - q[0])
+    dy = abs(p[1] - q[1])
+    return dx + dy;
+
+def direction(from_cell, to_cell):
+    dx = to_cell[0] - from_cell[0]
+    dy = to_cell[1] - from_cell[1]
+
+    if dx == 1:
+        return 'right'
+    elif dx == -1:
+        return 'left'
+    elif dy == -1:
+        return 'up'
+    elif dy == 1:
+        return 'down'
+
+
+
 
 @bottle.post('/start')
 def start():
@@ -26,6 +63,8 @@ def start():
         bottle.request.urlparts.scheme,
         bottle.request.urlparts.netloc
     )
+
+    kurt, grid, food = init(data)
 
     # TODO: Do things with data
 
@@ -40,13 +79,19 @@ def start():
 def move():
     data = bottle.request.json
 
+    snek_head = kurt['coords'][0]
+    snek_coords = kurt['coords']
+    path = None
+
+    foods = sorted(data['food'], key = lambda p: distance(p,middle)
+
+    path = a_star(snek_head, food[0], grid, snek_coords)
+        
+
     # TODO: Do things with data
     
-    directions = ['up', 'down', 'left', 'right']
-    direction = random.choice(directions)
-    print direction
     return {
-        'move': direction,
+        'move': direction(path[0], path[1])
         'taunt': 'battlesnake-python!'
     }
 
