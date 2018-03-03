@@ -84,7 +84,7 @@ def move():
     snek_coords = kurt['coords']
     path = None
 
-    foods = sorted(data['food'], key = lambda p: distance(p,middle))
+    foods = sorted(data['food'], key = lambda p: distance(p,snek_head))
 
     path = a_star(snek_head, food[0], grid, snek_coords)
         
