@@ -64,7 +64,6 @@ def start():
         bottle.request.urlparts.netloc
     )
 
-    kurt, grid, food = init(data)
 
     # TODO: Do things with data
 
@@ -79,11 +78,13 @@ def start():
 def move():
     data = bottle.request.json
 
+    kurt, grid = init(data)
+
     snek_head = kurt['coords'][0]
     snek_coords = kurt['coords']
     path = None
 
-    foods = sorted(data['food'], key = lambda p: distance(p,middle)
+    foods = sorted(data['food'], key = lambda p: distance(p,middle))
 
     path = a_star(snek_head, food[0], grid, snek_coords)
         
