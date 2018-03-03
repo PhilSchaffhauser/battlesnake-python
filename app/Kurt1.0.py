@@ -23,6 +23,8 @@ def checkUp(kurt, grid, data):
 		for coord in snake['coords']:
 			if futureMove == coord:
 				return false
+			if futureMove ==wall:
+				return false
 	if futureMove[1] < 0:
 		return False
 	return True
@@ -37,6 +39,8 @@ def checkLeft(kurt, grid, data):
 	for snake in data['snakes']:
 		for coord in snake['coords']:
 			if futureMove == coord:
+				return false
+			if futureMove ==wall:
 				return false
 	if futureMove[0] < 0:
 		return False
@@ -53,6 +57,8 @@ def checkRight(kurt, grid, data):
 		for coord in snake['coords']:
 			if futureMove == coord:
 				return false
+			if futureMove ==wall:
+				return false
 
 	if futureMove[0] > 14:
 		return False
@@ -65,6 +71,8 @@ def checkDown(kurt, grid, data):
 	for coord in body:
 		if futureMove == coord:
 			return False
+		if futureMove ==wall:
+				return false
 	for snake in data['snakes']:
 		for coord in snake['coords']:
 			if futureMove == coord:
