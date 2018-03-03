@@ -1,3 +1,4 @@
+from Astar import *
 import bottle
 import os
 import random
