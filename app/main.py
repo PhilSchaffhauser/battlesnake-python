@@ -2,7 +2,7 @@ import bottle
 import os
 import random
 
-
+#fuck the police
 
 @bottle.route('/')
 def static():
