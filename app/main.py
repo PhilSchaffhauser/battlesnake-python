@@ -41,13 +41,13 @@ def direction(from_cell, to_cell):
     dy = to_cell[1] - from_cell[1]
 
     if dx == 1:
-        return 'right'
-    elif dx == -1:
         return 'left'
+    elif dx == -1:
+        return 'right'
     elif dy == -1:
-        return 'up'
-    elif dy == 1:
         return 'down'
+    elif dy == 1:
+        return 'up'
 
 
 
@@ -87,6 +87,9 @@ def move():
     foods = sorted(data['food'], key = lambda p: distance(p,snek_head))
 
     path = a_star(snek_head, food[0], grid, snek_coords)
+    print(path)
+    if not path:
+        path = a_star(snek_head, snek_coords[-1], grid, snek_coords)
         
 
     # TODO: Do things with data
