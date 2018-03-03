@@ -58,7 +58,7 @@ def start():
     game_id = data.get('game_id')
     board_width = data.get('width')
     board_height = data.get('height')
-
+x`
     head_url = '%s://%s/static/head.png' % (
         bottle.request.urlparts.scheme,
         bottle.request.urlparts.netloc
@@ -77,7 +77,7 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
-
+    print("FUCK")
     kurt, grid = init(data)
 
     snek_head = kurt['coords'][0]
